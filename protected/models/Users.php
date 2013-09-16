@@ -6,7 +6,7 @@
  * The followings are the available columns in table '{{users}}':
  * @property integer $id
  * @property string $email
- * @property string $nickname
+ * @property string $username
  * @property string $password
  * @property integer $status
  *
@@ -32,12 +32,12 @@ class Users extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('email, nickname, password', 'required'),
+			array('email, username, password', 'required'),
 			array('status', 'numerical', 'integerOnly'=>true),
-			array('email, nickname, password', 'length', 'max'=>128),
+			array('email, username, password', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, email, nickname, password, status', 'safe', 'on'=>'search'),
+			array('id, email, username, password, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,7 +62,7 @@ class Users extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'email' => 'Email',
-			'nickname' => 'Nickname',
+			'username' => 'Username',
 			'password' => 'Password',
 			'status' => 'Status',
 		);
@@ -88,7 +88,7 @@ class Users extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('email',$this->email,true);
-		$criteria->compare('nickname',$this->nickname,true);
+		$criteria->compare('username',$this->username,true);
 		$criteria->compare('password',$this->password,true);
 		$criteria->compare('status',$this->status);
 
@@ -117,4 +117,5 @@ class Users extends CActiveRecord
     {
         return CPasswordHelper::hashPassword($password);
     }
+	
 }

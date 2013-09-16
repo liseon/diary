@@ -110,22 +110,25 @@ class SiteController extends Controller
 	
 	public function actionRegistration()
 	{
-		$model=new RegistrationForm;
+		if(!Yii::app()->user->isGuest) $this->redirect(Yii::app()->homeUrl);
 		
-		$model=new ContactForm;
+		$model=new RegistrationForm;
+
 		if(isset($_POST['RegistrationForm']))
 		{
 			$model->attributes=$_POST['RegistrationForm'];
 			if($model->validate())
 			{
 				$name='=?UTF-8?B?'.base64_encode(Yii::app()->name).'?=';
-				$subject='=?UTF-8?B?'.base64_encode(Yii::app()->params['registration_theme'] .'?=';
+				$subject='=?UTF-8?B?'. base64_encode(Yii::app()->params['registration_theme']) .'?=';
 				$headers="From: ". Yii::app()->name ." <". Yii::app()->params['adminEmail'] .">\r\n".
 					"MIME-Version: 1.0\r\n".
 					"Content-Type: text/plain; charset=UTF-8";
+					
+				$body = "Вы были зарегистрированы на сайте ". Yii::app()->name ."! Для подтверждения регистрации необходима перейти по ссылке: Ссылка пока не готова :)" ;
 
-				mail($model->email,$subject,$model->body,$headers);
-				Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
+				mail($model->email,$subject,$body,$headers);
+				Yii::app()->user->setFlash('registration','Аккаунт успешно создан. Вам на почту отправлено письмо для подтверждения регистрации.');
 				$this->refresh();
 			}
 		}
