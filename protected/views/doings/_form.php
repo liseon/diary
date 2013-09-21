@@ -37,6 +37,18 @@
 		<?php echo $form->error($model,'text'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->labelEx($model,'public_time'); ?>
+		<?php echo $form->textField($model,'public_time'); ?>
+		<?php echo $form->error($model,'public_time'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'active'); ?>
+		<?php echo $form->textField($model,'active'); ?>
+		<?php echo $form->error($model,'active'); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>

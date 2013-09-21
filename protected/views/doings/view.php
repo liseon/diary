@@ -25,5 +25,7 @@ $this->menu=array(
 		'user_id',
 		'reason_id',
 		'text',
+		'public_time',
+		'active',
 	),
 )); ?>

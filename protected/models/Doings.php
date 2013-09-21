@@ -8,6 +8,8 @@
  * @property integer $user_id
  * @property integer $reason_id
  * @property string $text
+ * @property string $public_time
+ * @property integer $active
  *
  * The followings are the available model relations:
  * @property Users $user
@@ -31,12 +33,12 @@ class Doings extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, reason_id, text', 'required'),
-			array('user_id, reason_id', 'numerical', 'integerOnly'=>true),
+			array('user_id, reason_id, text, public_time, active', 'required'),
+			array('user_id, reason_id, active', 'numerical', 'integerOnly'=>true),
 			array('text', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, user_id, reason_id, text', 'safe', 'on'=>'search'),
+			array('id, user_id, reason_id, text, public_time, active', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,6 +65,8 @@ class Doings extends CActiveRecord
 			'user_id' => 'User',
 			'reason_id' => 'Reason',
 			'text' => 'Text',
+			'public_time' => 'Public Time',
+			'active' => 'Active',
 		);
 	}
 
@@ -88,6 +92,8 @@ class Doings extends CActiveRecord
 		$criteria->compare('user_id',$this->user_id);
 		$criteria->compare('reason_id',$this->reason_id);
 		$criteria->compare('text',$this->text,true);
+		$criteria->compare('public_time',$this->public_time,true);
+		$criteria->compare('active',$this->active);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

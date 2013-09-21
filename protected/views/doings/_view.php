@@ -21,5 +21,13 @@
 	<?php echo CHtml::encode($data->text); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('public_time')); ?>:</b>
+	<?php echo CHtml::encode($data->public_time); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('active')); ?>:</b>
+	<?php echo CHtml::encode($data->active); ?>
+	<br />
+
 
 </div>

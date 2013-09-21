@@ -119,6 +119,15 @@ class SiteController extends Controller
 			$model->attributes=$_POST['RegistrationForm'];
 			if($model->validate())
 			{
+				$model_Users=new Users;
+				$model_Users->attributes=$_POST['RegistrationForm'];  // Загрузим данные с формы
+				$model_Users->hashPassword(); //Хэшируем пароль!
+				
+				if(!$model_Users->save()){
+					Yii::app()->user->setFlash('registration','Ошибка при регистрации! Попробуйте еще раз!');
+					$this->refresh();
+				}
+				
 				$name='=?UTF-8?B?'.base64_encode(Yii::app()->name).'?=';
 				$subject='=?UTF-8?B?'. base64_encode(Yii::app()->params['registration_theme']) .'?=';
 				$headers="From: ". Yii::app()->name ." <". Yii::app()->params['adminEmail'] .">\r\n".

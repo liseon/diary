@@ -31,6 +31,16 @@
 		<?php echo $form->textField($model,'text',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->label($model,'public_time'); ?>
+		<?php echo $form->textField($model,'public_time'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'active'); ?>
+		<?php echo $form->textField($model,'active'); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>
 	</div>
