@@ -3,19 +3,18 @@
 /* @var $model Reasons */
 
 $this->breadcrumbs=array(
-	'Reasons'=>array('index'),
-	$model->name=>array('view','id'=>$model->id),
-	'Update',
+	'Список причин'=>array('index'),
+	'Редактировать',
 );
 
 $this->menu=array(
-	array('label'=>'List Reasons', 'url'=>array('index')),
-	array('label'=>'Create Reasons', 'url'=>array('create')),
-	array('label'=>'View Reasons', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Reasons', 'url'=>array('admin')),
+	array('label'=>'Список причин', 'url'=>array('index')),
+	array('label'=>'Добавить причину', 'url'=>array('create')),
+	// array('label'=>'View Reasons', 'url'=>array('view', 'id'=>$model->id)),
+	// array('label'=>'Manage Reasons', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update Reasons <?php echo $model->id; ?></h1>
+<h1><?php echo $model->name; ?></h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

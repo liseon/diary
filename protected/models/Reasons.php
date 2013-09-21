@@ -105,15 +105,37 @@ class Reasons extends CActiveRecord
 		return parent::model($className);
 	}
 	
+	
+	private static function types()
+	{
+		return array(
+				"1"=>array("name"=>"Обязанности","style"=>"red"),
+				"2"=>array("name"=>"Досуг","style"=>"blue"),
+				"3"=>array("name"=>"Цель","style"=>"green"),
+				);
+	}
+
+
+	
 	public static function get_type($id=false)
 	{	
-		$types=array(
-					"1"=>"Обязанности",
-					"2"=>"Досуг",
-					"3"=>"Цель",
-					);
-		if (!$id) return $types;
-			else return  $types[$id];
+		if (!$id){
+		$types = self::types();
+				$new_types=array();
+				foreach ($types as $k=>$row)
+					$new_types[$k]=$row['name'];
+				return  $new_types;
+			}
+			else { 
+			$types = self::types();
+			return  $types[$id]['name'];
+			}
+	}
+	
+	public static function get_type_style($id)
+	{	
+		$types = self::types();
+		return  $types[$id]['style'];
 	}
 	
 	

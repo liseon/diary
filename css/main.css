@@ -135,6 +135,22 @@ div.view
 	border: 1px solid #C9E0ED;
 }
 
+div.view.red
+{
+	background:#e97451;
+}
+
+div.view.geen
+{
+	background:#bef574;
+}
+
+
+div.view.blue
+{
+	background:#74ccf5;
+}
+
 div.breadcrumbs
 {
 	font-size: 0.9em;
