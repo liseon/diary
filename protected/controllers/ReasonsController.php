@@ -70,6 +70,7 @@ class ReasonsController extends Controller
 		if(isset($_POST['Reasons']))
 		{
 			$model->attributes=$_POST['Reasons'];
+			$model->user_id = Yii::app()->user->getId();
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -122,7 +123,15 @@ class ReasonsController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Reasons');
+		$dataProvider=new CActiveDataProvider('Reasons', array(
+			'criteria'=>array(
+				'order'=>'type ASC',
+				'with'=>array('user'=>array(
+						'select'=>false,
+						'joinType'=>'INNER JOIN',
+						'condition'=>'user.id='. Yii::app()->user->getId() 
+						)),
+											)));
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -152,7 +161,13 @@ class ReasonsController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=Reasons::model()->findByPk($id);
+	
+			$model=Reasons::model()->with(array(
+						'user'=>array(
+						'select'=>false,
+						'joinType'=>'INNER JOIN',
+						'condition'=>'user.id='. Yii::app()->user->getId() 
+						)))->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;

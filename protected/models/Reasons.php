@@ -31,7 +31,7 @@ class Reasons extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, name', 'required'),
+			array('user_id, type, name', 'required'),
 			array('user_id, type', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>255),
 			// The following rule is used by search().
@@ -104,4 +104,17 @@ class Reasons extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	
+	public static function get_type($id=false)
+	{	
+		$types=array(
+					"1"=>"Обязанности",
+					"2"=>"Досуг",
+					"3"=>"Цель",
+					);
+		if (!$id) return $types;
+			else return  $types[$id];
+	}
+	
+	
 }

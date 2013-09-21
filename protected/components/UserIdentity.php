@@ -31,7 +31,7 @@ class UserIdentity extends CUserIdentity
 		//var_dump($user);
             $this->_id=$user->id;
             $this->username=$user->username;
-          //  $this->email=$user->email;
+          // $this->email=$user->email;
             $this->errorCode=self::ERROR_NONE;
         }
         return $this->errorCode==self::ERROR_NONE;	

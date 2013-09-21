@@ -15,24 +15,26 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note">Составьте Ваш список "причин" к ежедневным действиям!<br>
+		Причины могут быть 3-ех типов: <br>
+		<ul>
+			<li>Обязанности (перед обществом, семьей, друзьями, работой)</li>
+			<li>Досуг (Данная категория должна объединять все те действия, которые Вы делаете ради развлечения, отдыха и получения удовольствия)</li>
+			<li>Цель (Эта категория должна объединять все те действия, которя ведут Вас к конкретной желаемой цели или мечте.)</li>
+		</ul>
+		</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'user_id'); ?>
-		<?php echo $form->textField($model,'user_id'); ?>
-		<?php echo $form->error($model,'user_id'); ?>
-	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'type'); ?>
-		<?php echo $form->textField($model,'type'); ?>
+		<?php echo $form->labelEx($model,'Тип:'); ?>
+		<?php echo $form->dropDownList($model,'type', Reasons::get_type() ); ?>
 		<?php echo $form->error($model,'type'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'name'); ?>
+		<?php echo $form->labelEx($model,'Название:'); ?>
 		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'name'); ?>
 	</div>
