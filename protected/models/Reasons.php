@@ -61,8 +61,8 @@ class Reasons extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'user_id' => 'User',
-			'type' => 'Type',
-			'name' => 'Name',
+			'type' => 'Тип:',
+			'name' => 'Название:',
 		);
 	}
 
@@ -136,6 +136,16 @@ class Reasons extends CActiveRecord
 	{	
 		$types = self::types();
 		return  $types[$id]['style'];
+	}
+	
+	public static function get_list()
+	{
+		$id =  Yii::app()->user->getId();
+		$list = self::model()->findAll("user_id = $id");
+		$list_ar=array();
+		foreach ($list as $row)
+			$list_ar[$row['id']] = $row['name'];
+		return $list_ar;
 	}
 	
 	

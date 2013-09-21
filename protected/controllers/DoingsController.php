@@ -7,6 +7,31 @@ class DoingsController extends Controller
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	public $layout='//layouts/column2';
+	
+	private static function dateFormat()
+	{
+		return new CDbExpression("DATE_FORMAT(t.public_time,'%d.%m.%Y') AS public_time"); 
+	}
+	
+	private static function dataProvider_gen($active=1)
+	{
+		return new CActiveDataProvider('Doings',array(
+			'criteria'=>array(
+				'select'=>array('id','user_id','reason_id','text','active',self::dateFormat()),
+				'order'=>'public_time DESC',
+				'condition'=>'t.active = '.$active,
+				'with'=>array('user'=>array(
+						'select'=>false,
+						'joinType'=>'INNER JOIN',
+						'condition'=>'user.id='. Yii::app()->user->getId() 
+						),
+						'reason'=>array(
+						'select'=>'reason.type as type',
+						'joinType'=>'INNER JOIN'
+						)
+						),
+											)));
+	}
 
 	/**
 	 * @return array action filters
@@ -32,7 +57,7 @@ class DoingsController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','basket'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -49,12 +74,12 @@ class DoingsController extends Controller
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
-	public function actionView($id)
-	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
-	}
+	// public function actionView($id)
+	// {
+		// $this->render('view',array(
+			// 'model'=>$this->loadModel($id),
+		// ));
+	// }
 
 	/**
 	 * Creates a new model.
@@ -70,8 +95,9 @@ class DoingsController extends Controller
 		if(isset($_POST['Doings']))
 		{
 			$model->attributes=$_POST['Doings'];
+			$model->user_id = Yii::app()->user->getId();
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('index'));
 		}
 
 		$this->render('create',array(
@@ -93,9 +119,11 @@ class DoingsController extends Controller
 
 		if(isset($_POST['Doings']))
 		{
-			$model->attributes=$_POST['Doings'];
+			$model->reason_id=$_POST['Doings']['reason_id'];
+			$model->text=$_POST['Doings']['text'];
+			$model->public_time=$_POST['Doings']['public_time'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('index'));
 		}
 
 		$this->render('update',array(
@@ -122,9 +150,15 @@ class DoingsController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Doings');
 		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
+			'dataProvider'=>self::dataProvider_gen(),
+		));
+	}
+	/* Корзина */
+	public function actionBasket()
+	{
+		$this->render('index',array(
+			'dataProvider'=>self::dataProvider_gen(0),
 		));
 	}
 
@@ -152,7 +186,18 @@ class DoingsController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=Doings::model()->findByPk($id);
+
+		$model=Doings::model()->with(array(
+						'user'=>array(
+						'select'=>false,
+						'joinType'=>'INNER JOIN',
+						'condition'=>'user.id='. Yii::app()->user->getId() 
+						)))->find(array(
+						'select'=>array('id','user_id','reason_id','text','active',self::dateFormat()),
+						'condition'=>"t.id = $id",
+						'limit'=>1,
+						));
+
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;

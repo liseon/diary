@@ -65,14 +65,14 @@ class ReasonsController extends Controller
 		$model=new Reasons;
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		//$this->performAjaxValidation($model);
 
 		if(isset($_POST['Reasons']))
 		{
 			$model->attributes=$_POST['Reasons'];
 			$model->user_id = Yii::app()->user->getId();
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('index'));
 		}
 
 		$this->render('create',array(
@@ -94,9 +94,10 @@ class ReasonsController extends Controller
 
 		if(isset($_POST['Reasons']))
 		{
-			$model->attributes=$_POST['Reasons'];
+			$model->type=$_POST['Reasons']['type'];
+			$model->name=$_POST['Reasons']['name'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('index'));
 		}
 
 		$this->render('update',array(

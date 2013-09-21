@@ -3,7 +3,7 @@ body
 	margin: 0;
 	padding: 0;
 	color: #555;
-	font: normal 10pt Arial,Helvetica,sans-serif;
+	font: normal 10pt Verdana;
 	background: #EFEFEF;
 }
 
@@ -243,3 +243,5 @@ div.search-form
 {
 	background: #80CFFF;
 }
+
+.mini_text { font-size:8pt;}

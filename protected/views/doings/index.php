@@ -3,16 +3,18 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Doings',
+	'Действия',
 );
 
 $this->menu=array(
-	array('label'=>'Create Doings', 'url'=>array('create')),
-	array('label'=>'Manage Doings', 'url'=>array('admin')),
+	array('label'=>'Список действий', 'url'=>array('index')),
+	array('label'=>'Новое действие', 'url'=>array('create')),
+	array('label'=>'Корзина', 'url'=>array('basket')),
+	// array('label'=>'Manage Doings', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Doings</h1>
+<h1>Действия</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

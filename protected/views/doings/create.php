@@ -3,16 +3,17 @@
 /* @var $model Doings */
 
 $this->breadcrumbs=array(
-	'Doings'=>array('index'),
-	'Create',
+	'Действия'=>array('index'),
+	'Создать',
 );
 
 $this->menu=array(
-	array('label'=>'List Doings', 'url'=>array('index')),
-	array('label'=>'Manage Doings', 'url'=>array('admin')),
+	array('label'=>'Список действий', 'url'=>array('index')),
+	array('label'=>'Новое действие', 'url'=>array('create')),
+	array('label'=>'Корзина', 'url'=>array('basket')),
 );
 ?>
 
-<h1>Create Doings</h1>
+<h1>Создать действие</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

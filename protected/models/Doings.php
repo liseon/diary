@@ -33,13 +33,19 @@ class Doings extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, reason_id, text, public_time, active', 'required'),
+			array('user_id, reason_id, text, public_time', 'required'),
 			array('user_id, reason_id, active', 'numerical', 'integerOnly'=>true),
 			array('text', 'length', 'max'=>255),
+			array('public_time','timeFormat'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, user_id, reason_id, text, public_time, active', 'safe', 'on'=>'search'),
 		);
+	}
+	
+	public function timeFormat($attribute,$params)
+	{
+		$this->public_time=date("Y-m-d h:i:s",strtotime($this->public_time));
 	}
 
 	/**
@@ -63,9 +69,9 @@ class Doings extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'user_id' => 'User',
-			'reason_id' => 'Reason',
-			'text' => 'Text',
-			'public_time' => 'Public Time',
+			'reason_id' => 'Выберите причину:',
+			'text' => 'Что Вы сделали?',
+			'public_time' => 'Время действия:',
 			'active' => 'Active',
 		);
 	}
