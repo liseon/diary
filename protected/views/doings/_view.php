@@ -9,8 +9,7 @@
 	</div>
 
 
-<!-- 	<b><?php echo CHtml::encode($data->getAttributeLabel('reason_id')); ?>:</b> -->
-	<?php echo CHtml::encode($data->reason_id); ?>
+	<b><?php echo CHtml::encode($data->reason->name); ?></b>
 	<br />
 
 <!-- 	<b><?php echo CHtml::encode($data->getAttributeLabel('text')); ?>:</b> -->

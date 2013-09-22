@@ -26,7 +26,7 @@ class DoingsController extends Controller
 						'condition'=>'user.id='. Yii::app()->user->getId() 
 						),
 						'reason'=>array(
-						'select'=>'reason.type as type',
+						'select'=>array('reason.type as type','reason.name as name'),
 						'joinType'=>'INNER JOIN'
 						)
 						),
@@ -151,6 +151,7 @@ class DoingsController extends Controller
 	 */
 	public function actionIndex()
 	{
+		if(Yii::app()->user->isGuest) $this->redirect(array('/site/index'));
 		$this->render('index',array(
 			'dataProvider'=>self::dataProvider_gen(),
 		));

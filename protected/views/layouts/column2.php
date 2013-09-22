@@ -10,11 +10,11 @@
 	<?php if(!Yii::app()->user->isGuest) $this->widget('UserMenu'); ?>
 	<?php
 		$this->beginWidget('zii.widgets.CPortlet', array(
-			'title'=>'Operations',
+			'title'=>'Категории',
 		));
 		$this->widget('zii.widgets.CMenu', array(
 			'items'=>$this->menu,
-			'htmlOptions'=>array('class'=>'operations'),
+			'htmlOptions'=>array('class'=>'Управление'),
 		));
 		$this->endWidget();
 	?>

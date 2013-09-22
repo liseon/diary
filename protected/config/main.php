@@ -8,6 +8,7 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'What have you done?',
+	'defaultController'=>'doings',
 
 
 	// preloading 'log' component
