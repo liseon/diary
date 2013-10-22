@@ -32,8 +32,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'public_time'); ?>
-		<?php echo $form->textField($model,'public_time'); ?>
+		<?php echo $form->label($model,'action_time'); ?>
+		<?php echo $form->textField($model,'action_time'); ?>
 	</div>
 
 	<div class="row">

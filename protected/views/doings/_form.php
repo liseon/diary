@@ -20,11 +20,11 @@
 	<?php echo $form->errorSummary($model); ?>
 	
 	<div class="row">
-	<?php echo $form->labelEx($model,'public_time'); ?>
+	<?php echo $form->labelEx($model,'action_time'); ?>
 		<?php $this->widget('zii.widgets.jui.CJuiDatePicker', array(
-			'name' => 'public_time',
+			'name' => 'action_time',
 			'model' => $model,
-			'attribute' => 'public_time',
+			'attribute' => 'action_time',
 			'language' => 'ru',
 			'options' => array(
 				'showAnim' => 'fold',
@@ -33,7 +33,7 @@
 			'style' => 'height:20px;'
 				),
 		));?>
-		<?php echo $form->error($model,'public_time'); ?>
+		<?php echo $form->error($model,'action_time'); ?>
 	</div>
 
 	<div class="row">

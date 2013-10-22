@@ -7,9 +7,10 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Список действий', 'url'=>array('index')),
-	array('label'=>'Новое действие', 'url'=>array('create')),
-	array('label'=>'Корзина', 'url'=>array('basket')),
+	array('label'=>'Список действий', 'url'=>array('Index')),
+	array('label'=>'Новое действие', 'url'=>array('Create')),
+	array('label'=>'Корзина', 'url'=>array('Basket')),
+	array('label'=>'Отчеты', 'url'=>array('Reports')),
 	// array('label'=>'Manage Doings', 'url'=>array('admin')),
 );
 ?>
