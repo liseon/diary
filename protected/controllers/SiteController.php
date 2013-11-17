@@ -92,8 +92,10 @@ class SiteController extends Controller
 		{
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
-				$this->redirect(Yii::app()->user->returnUrl);
+			if($model->validate() && $model->login()) {
+                $this->redirect(Yii::app()->user->returnUrl);
+            }
+
 		}
 		// display the login form
 		$this->render('login',array('model'=>$model));
@@ -110,7 +112,7 @@ class SiteController extends Controller
 	
 	public function actionRegistration()
 	{
-		if(!Yii::app()->user->isGuest) $this->redirect(Yii::app()->homeUrl);
+		if(!Yii::app()->user->isGuest) $this->redirect($this->createUrl('doings/index'));
 		
 		$model=new RegistrationForm;
 
@@ -130,7 +132,7 @@ class SiteController extends Controller
 				
 				$name='=?UTF-8?B?'.base64_encode(Yii::app()->name).'?=';
 				$subject='=?UTF-8?B?'. base64_encode(Yii::app()->params['registration_theme']) .'?=';
-				$headers="From: ". Yii::app()->name ." <". Yii::app()->params['adminEmail'] .">\r\n".
+				$headers="From: {$name} <". Yii::app()->params['adminEmail'] .">\r\n".
 					"MIME-Version: 1.0\r\n".
 					"Content-Type: text/plain; charset=UTF-8";
 					

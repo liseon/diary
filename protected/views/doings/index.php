@@ -2,9 +2,7 @@
 /* @var $this DoingsController */
 /* @var $dataProvider CActiveDataProvider */
 
-$this->breadcrumbs=array(
-	'Действия',
-);
+
 
 $this->menu=array(
 	array('label'=>'Список действий', 'url'=>array('Index')),

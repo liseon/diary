@@ -104,7 +104,7 @@ class Doings extends CActiveRecord
     /**
      * @return CDbExpression
      */
-    private static function dateFormat() {
+    public static function dateFormat() {
         return new CDbExpression("DATE_FORMAT(t.action_time,'%d.%m.%Y') AS action_time");
     }
 
@@ -166,10 +166,16 @@ class Doings extends CActiveRecord
      */
     public static function genReports() {
         $connection = Yii::app()->db;
+        //Подготовим структуру
+        $structure =array();
+        for ($time = strtotime("2013-09-20"); $time <= time()+3600*24; $time += 3600*24) {
+            $date = date("Y-m-d", $time);
+            $structure[$date] = array((int)$time*1000, 0);
+        }
         $result=array(
-            "1"=>[],
-            "2"=>[],
-            "3"=>[],
+            "1"=>$structure,
+            "2"=>$structure,
+            "3"=>$structure,
         );
         $sql = "
                 SELECT
@@ -190,7 +196,12 @@ class Doings extends CActiveRecord
         $params = array();
         $dataReader = $connection->createCommand($sql)->bindValues($params)->query();
         foreach ($dataReader as $row) {
-            $result[$row['type']][$row['act_time']] = $row['kol'];
+          //  $result[$row['type']][$row['act_time']] = array(((int)strtotime($row['act_time']))*1000, (int)$row['kol']);
+            $result[$row['type']][$row['act_time']][1]  = (int)$row['kol'];
+        }
+        //приведем хэш к простому массиву [$key,$val]
+        foreach ($result as $type=>$row){
+            $result[$type] = array_values($row);
         }
 
         return $result;

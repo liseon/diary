@@ -4,9 +4,6 @@
 /* @var $form CActiveForm */
 
 $this->pageTitle=Yii::app()->name . ' - Регистрация';
-$this->breadcrumbs=array(
-	'Регистрация',
-);
 ?>
 
 <h1>Регистрация</h1>

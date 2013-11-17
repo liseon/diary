@@ -217,7 +217,7 @@ class DoingsController extends Controller
             )
         )->find(
                 array(
-                    'select' => array('id', 'user_id', 'reason_id', 'text', 'active', self::dateFormat()),
+                    'select' => array('id', 'user_id', 'reason_id', 'text', 'active', Doings::dateFormat()),
                     'condition' => "t.id = $id",
                     'limit' => 1,
                 )
