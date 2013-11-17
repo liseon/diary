@@ -53,16 +53,8 @@ return array(
 		/*'db'=>array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 		),*/
-		// uncomment the following to use a MySQL database
 		
-		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=diary',
-			'emulatePrepare' => true,
-			'username' => 'diary',
-			'password' => 'ftrDiarypass',
-			'charset' => 'utf8',
-			'tablePrefix' => 'tbl_',
-		),
+		'db' => __DIR__ .'bd.config.php',
 		
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
