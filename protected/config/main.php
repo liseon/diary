@@ -54,7 +54,7 @@ return array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 		),*/
 		
-		'db' => __DIR__ .'bd.config.php',
+		'db' => require_once(dirname(__FILE__) .'/bd.config.php'),
 		
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
