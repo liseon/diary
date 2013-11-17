@@ -47,6 +47,11 @@
                         'visible' => !Yii::app()->user->isGuest
                     ),
                     array(
+                        'label' => 'Причины',
+                        'url' => array('/reasons/index'),
+                        'visible' => !Yii::app()->user->isGuest
+                    ),
+                    array(
                         'label' => 'Статистика',
                         'url' => array('/doings/Reports'),
                         'visible' => !Yii::app()->user->isGuest

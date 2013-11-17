@@ -16,58 +16,16 @@ $this->menu = array(
 
 <?
 
-/*$this->Widget(
-    'ext.highcharts.HighchartsWidget',
-    array(
-        'options' => array(
-            'title' => array('text' => 'Тенденция по базовым типам'),
-            'xAxis' => array(
-                'type' => 'datetime',
-                //                'dateTimeLabelFormats' => [ // don't display the dummy year
-                //                    'month' => '%e. %b',
-                //                    'year' => '%b'
-                //                ],
-            ),
-            'yAxis' => array(
-                'title' => array('text' => 'Активность'),
-                'min' => 0,
-                'showFirstLabel' => false,
-            ),
-            'series' => array(
-    array(
-        'name' => 'Обязанности',
-        'marker' => [
-            'symbol' => 'square',
-        ],
-        'data' => $reports['1']
-    ),
-    array(
-        'name' => 'Досуг',
-        'marker' => [
-            'symbol' => 'diamond',
-        ],
-        'data' => $reports['2']
-    ),
-    array(
-        'name' => 'Цели',
-        'marker' => [
-            'symbol' => 'triangle',
-        ],
-        'data' => $reports['3']
-    ),
-)
-        )
-    )
-);*/
+
 $this->Widget('ext.highcharts.HighchartsWidget', array(
         'options'=>array(
             'title' => array('text' => 'Тенденция по базовым типам'),
             'xAxis' => array(
                 'type' => 'datetime',
-                'dateTimeLabelFormats' => [ // don't display the dummy year
+                'dateTimeLabelFormats' => array(
                     'month' => '%e. %b',
                     'year' => '%b'
-                ],
+                ),
             ),
             'yAxis' => array(
                 'title' => array('text' => 'Активность'),
@@ -78,25 +36,25 @@ $this->Widget('ext.highcharts.HighchartsWidget', array(
                 array(
                     'name' => 'Обязанности',
                     'color' => 'red',
-                    'marker' => [
+                    'marker' => array(
                         'symbol' => 'square',
-                    ],
+                    ),
                     'data' => $reports['1'],
                 ),
                 array(
                     'name' => 'Досуг',
                     'color' => 'blue',
-                    'marker' => [
+                    'marker' => array(
                         'symbol' => 'diamond',
-                    ],
+                    ),
                     'data' => $reports['2']
                 ),
                 array(
                     'name' => 'Цели',
                     'color' => 'green',
-                    'marker' => [
+                    'marker' => array(
                         'symbol' => 'triangle',
-                    ],
+                    ),
                     'data' => $reports['3']
                 ),
 

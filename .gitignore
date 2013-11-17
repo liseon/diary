@@ -16,7 +16,10 @@ local.properties
 .settings/
 .loadpath
 .idea
+
 protected/config/bd.config.php
+index.php
+index-test.php
 
 # External tool builders
 .externalToolBuilders/
